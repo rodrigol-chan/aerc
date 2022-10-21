@@ -54,7 +54,7 @@ func (db *DB) connect(writable bool) error {
 		mode = notmuch.DBReadWrite
 	}
 	var err error
-	db.db, err = notmuch.Open(db.path, mode)
+	db.db, err = notmuch.OpenWithConfig(&db.path, nil, nil, mode)
 	if err != nil {
 		return fmt.Errorf("could not connect to notmuch db: %w", err)
 	}
